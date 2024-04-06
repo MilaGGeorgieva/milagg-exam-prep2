@@ -25,3 +25,21 @@ jobs:
       run: npm run test:unit
     - name: Display SoftUni username
       run: echo "milagg"
+
+  ui_tests:
+
+    runs-on: ubuntu-latest
+    needs: build_test   
+    
+    steps:
+    - name: Checkout repository 
+      uses: actions/checkout@v4
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
+    - name: Run UI tests
+      run: npm run test:ui
